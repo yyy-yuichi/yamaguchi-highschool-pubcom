@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="山口県立高校再編について、学校への影響、素案と最終計画の差、決定までの流れを公式資料から確認できるWebサイトです。">
+  <title>山口県立高校再編｜学校・計画差分・意思決定の流れ</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="作品②ホーム">
+      <span class="brand-mark" aria-hidden="true">YH</span>
+      <span><strong>山口県立高校再編</strong><small>意思決定過程をたどる</small></span>
+    </a>
+    <span class="status-chip"><span aria-hidden="true"></span>試行版</span>
+  </header>
+
+  <main id="main">
+    <section class="hero section" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">山口県立高校再編・公式資料ナビ</p>
+        <h1 id="hero-title">学校のこれからを、<br><span>決まるまで</span>たどる。</h1>
+        <p class="hero-lead">山口県立高校の再編について、学校への影響、素案と最終計画の違い、県民意見や県議会を含む出来事の順番を、公式資料へ戻りながら確認できます。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#persona">自分の入口を選ぶ</a>
+          <a class="button button-secondary" href="#position">このサイトの見方を見る</a>
+          <a class="button button-secondary" href="#public-comment">県民意見を見る</a>
+        </div>
+        <p class="hero-note">再編への賛否や変更理由を自動判定する画面ではありません。</p>
+      </div>
+      <div class="hero-panel" aria-label="この作品で確認できる数字">
+        <p class="panel-label">現在の確認範囲</p>
+        <div class="metric-grid">
+          <div><strong data-count="schools">23</strong><span>学校・分校</span></div>
+          <div><strong data-count="school_change_cards">27</strong><span>学校への変更</span></div>
+          <div><strong data-count="plan_diff_clusters">111</strong><span>全文差分</span></div>
+          <div><strong data-count="timeline_events">11</strong><span>出来事</span></div>
+        </div>
+        <p class="panel-foot">受入済み公式資料から生成。最新情報は各カードの公式リンクで確認してください。</p>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="persona" aria-labelledby="persona-title">
+      <div class="section-heading">
+        <p class="eyebrow">あなたに合わせて始める</p>
+        <h2 id="persona-title">何を知りたいですか？</h2>
+        <p>立場を選ぶと、最初に見る場所と読み方を案内します。</p>
+      </div>
+      <div class="persona-grid" id="persona-list" aria-label="利用者別の入口"></div>
+      <div class="persona-guide" id="persona-guide" aria-live="polite">
+        <span class="guide-icon" aria-hidden="true">→</span>
+        <p><strong>入口を選んでください</strong><span>保護者、中学生、地域住民、県議会議員の4つから選べます。</span></p>
+      </div>
+    </section>
+
+    <section class="section position-section" id="position" aria-labelledby="position-title">
+      <div class="section-heading heading-row">
+        <div><p class="eyebrow">このサイトの見方</p><h2 id="position-title">結論を決めつけず、公式資料へ戻りながら確認できます。</h2></div>
+        <span class="stage-badge">掲載範囲を明示</span>
+      </div>
+      <div class="progress-track" aria-label="このサイトで確認できること">
+        <div class="progress-step done"><span>1</span><strong>学校への影響</strong><small>学校別に確認</small></div>
+        <div class="progress-step done"><span>2</span><strong>計画の変更</strong><small>素案と最終案を比較</small></div>
+        <div class="progress-step done"><span>3</span><strong>県民意見</strong><small>意見と県の考え方</small></div>
+        <div class="progress-step done"><span>4</span><strong>時系列</strong><small>公式資料をたどる</small></div>
+      </div>
+      <div class="position-grid">
+        <article class="plain-card"><span class="card-kicker">掲載範囲</span><h3>受入済みの公式資料に基づく</h3><p>画面に掲載していない情報や今後の更新は、各カードの公式リンクから確認してください。</p></article>
+        <article class="plain-card"><span class="card-kicker">読み方</span><h3>賛否や理由を自動判定しない</h3><p>資料に書かれた事実と、このサイトによる整理を区別して示します。</p></article>
+        <article class="plain-card"><span class="card-kicker">確認方法</span><h3>根拠となる資料へ戻れる</h3><p>学校、計画差分、県民意見、時系列の各表示から公式資料をたどれます。</p></article>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="school-impact" aria-labelledby="school-title">
+      <div class="section-heading on-dark">
+        <p class="eyebrow">01 学校への影響</p>
+        <h2 id="school-title">学校名から、変更と年度を探す</h2>
+        <p>素案と最終計画を分け、公式PDFのページまで戻れます。</p>
+      </div>
+      <form class="filters filters-dark" id="school-filters" role="search">
+        <label for="school-search">学校名<input id="school-search" type="search" placeholder="例：山口中央高校" autocomplete="off"></label>
+        <label for="school-action">変更の種類<select id="school-action"><option value="all">すべて</option><option value="integrate">再編統合</option><option value="change_program">学科・コース変更</option><option value="reorganize">分校の独立・再編</option><option value="change_admission">募集変更</option><option value="review">今後検討</option></select></label>
+        <label for="school-year">実施年度<select id="school-year"><option value="all">すべて</option><option value="2028">2028年度</option><option value="2029">2029年度</option><option value="2030">2030年度</option><option value="2031">2031年度</option><option value="2032">2032年度</option><option value="2033">2033年度</option><option value="none">年度の記載なし</option></select></label>
+        <button class="button button-ghost" type="reset">条件をクリア</button>
+      </form>
+      <div class="result-bar on-dark"><p id="school-count" aria-live="polite">読み込み中…</p><p>全件、資料からの転記を二重確認済み</p></div>
+      <div class="card-grid" id="school-list"></div>
+      <p class="empty-state" id="school-empty" hidden>条件に合う学校への変更はありません。条件を変えてください。</p>
+    </section>
+
+    <section class="section" id="plan-diff" aria-labelledby="diff-title">
+      <div class="section-heading">
+        <p class="eyebrow">02 素案と最終版</p>
+        <h2 id="diff-title">計画のどこが変わった？</h2>
+        <p>素案106項目と最終版110項目を全文照合した111件です。まず変更・追加を表示します。</p>
+      </div>
+      <div class="diff-summary" aria-label="全文照合の内訳">
+        <button class="summary-tile active" type="button" data-diff-filter="changed"><strong>12</strong><span>変更・増減</span></button>
+        <button class="summary-tile" type="button" data-diff-filter="modified"><strong>6</strong><span>変更</span></button>
+        <button class="summary-tile" type="button" data-diff-filter="added_in_final"><strong>5</strong><span>最終版で追加</span></button>
+        <button class="summary-tile" type="button" data-diff-filter="removed_from_final"><strong>1</strong><span>最終版では確認できない</span></button>
+        <button class="summary-tile" type="button" data-diff-filter="same"><strong>99</strong><span>同じ記載</span></button>
+      </div>
+      <div class="filters compact-filters">
+        <label for="diff-search">差分を検索<input id="diff-search" type="search" placeholder="例：公表時期、学校づくり"></label>
+        <p class="filter-note">変更理由や県民意見・県議会との因果は、ここでは確認していません。</p>
+      </div>
+      <div class="result-bar"><p id="diff-count" aria-live="polite">読み込み中…</p><button class="text-button" id="diff-more" type="button">さらに表示</button></div>
+      <div class="diff-list" id="diff-list"></div>
+      <p class="empty-state" id="diff-empty" hidden>条件に合う差分はありません。</p>
+    </section>
+
+    <section class="section section-soft" id="timeline" aria-labelledby="timeline-title">
+      <div class="section-heading">
+        <p class="eyebrow">03 決定までの流れ</p>
+        <h2 id="timeline-title">2022年から2026年まで</h2>
+        <p>計画、県民意見、県議会、背景統計を同じ時系列で見ます。</p>
+      </div>
+      <div class="chip-row" id="timeline-filters" aria-label="資料群で絞り込み">
+        <button class="chip active" type="button" data-timeline-filter="all">すべて</button>
+        <button class="chip" type="button" data-timeline-filter="future_plan">計画</button>
+        <button class="chip" type="button" data-timeline-filter="public_comment">県民意見</button>
+        <button class="chip" type="button" data-timeline-filter="assembly_minutes">県議会</button>
+        <button class="chip" type="button" data-timeline-filter="school_basic_survey">背景統計</button>
+      </div>
+      <p class="result-note" id="timeline-count" aria-live="polite">読み込み中…</p>
+      <div class="timeline-list" id="timeline-list"></div>
+    </section>
+
+
+    <section class="section section-public-comment" id="public-comment" aria-labelledby="public-comment-title">
+      <div class="section-heading heading-row">
+        <div><p class="eyebrow">県民意見を読む</p><h2 id="public-comment-title">意見と県の回答を、探して行き来できます。</h2><p>二重確認済みの13ページを、キーワード・ページ・論点・回答グループから絞り込めます。</p></div>
+        <span class="stage-badge comment-stage">二重確認済み・公開前</span>
+      </div>
+      <div class="comment-metrics" aria-label="今回表示する公開コメントの範囲">
+        <p><strong data-count="public_comment_opinion_items">150</strong><span>公開意見項目</span></p>
+        <p><strong data-count="public_comment_government_responses">23</strong><span>県の回答</span></p>
+        <p><strong>13 / 39</strong><span>確認した物理ページ</span></p>
+      </div>
+      <div class="comment-boundary" id="comment-boundary" role="note">
+        <strong>数字を読む前に</strong>
+        <p>これは382件全体ではありません。150項目は、150人・150票・150件の個別提出原文・代表調査を意味せず、公表時に要約・統合された可能性があります。</p>
+      </div>
+      <form class="comment-toolbar coverage-toolbar" id="comment-filters" role="search">
+        <label class="comment-search-wide" for="comment-search">キーワード
+          <input id="comment-search" type="search" inputmode="search" autocomplete="off" placeholder="例：通学、統合、定時制">
+        </label>
+        <label for="comment-page">物理ページ<select id="comment-page"><option value="all">すべてのページ</option></select></label>
+        <label for="comment-topic">論点<select id="comment-topic"><option value="all">すべての論点</option></select></label>
+        <label for="comment-group">回答グループ<select id="comment-group"><option value="all">すべての回答</option></select></label>
+        <button class="button button-ghost" id="comment-reset" type="reset">条件をすべて戻す</button>
+      </form>
+      <div class="result-bar comment-result-bar">
+        <p id="comment-count" role="status" aria-live="polite">150項目を表示／全150項目</p>
+        <p id="comment-response-count">23回答を表示</p>
+      </div>
+      <div class="comment-list" id="comment-list" aria-describedby="comment-boundary"></div>
+      <p class="empty-state" id="comment-empty" hidden>一致する意見がありません。言葉を短くするか、「条件をすべて戻す」を押してください。</p>
+      <section class="comment-responses" aria-labelledby="comment-responses-title">
+        <div class="comment-subheading"><div><p class="eyebrow">意見に対応する回答</p><h3 id="comment-responses-title">山口県の考え方</h3></div><p>表示中の意見に対応する回答だけを表示します。</p></div>
+        <div id="comment-response-list" class="comment-response-list"></div>
+      </section>
+      <div class="comment-reading-guide"><h3>この画面から言えること・言えないこと</h3><ul id="comment-boundary-list"></ul><p class="result-note">県の回答が掲載されていても、計画の実施完了を意味しません。</p></div>
+    </section>
+
+    <section class="section" id="scope" aria-labelledby="scope-title">
+      <div class="section-heading"><p class="eyebrow">根拠と限界</p><h2 id="scope-title">分かることと、まだ分からないこと</h2><p>「まだ分からない」は、影響がないという意味ではありません。この作品で根拠を確認できていないという意味です。</p></div>
+      <div class="scope-grid">
+        <article class="scope-card known"><span aria-hidden="true">✓</span><div><h3>確認できます</h3><ul id="known-list"></ul></div></article>
+        <article class="scope-card unknown"><span aria-hidden="true">?</span><div><h3>まだ確認できません</h3><ul id="limitation-list"></ul></div></article>
+      </div>
+      <div class="caution-grid">
+        <p><strong>382件</strong><span>県民意見の件数。賛否票や代表調査ではありません。</span></p>
+        <p><strong>3件</strong><span>保存済み県議会本文。関連審査の全体像ではありません。</span></p>
+        <p><strong>確認済み</strong><span>資料転記の確認。計画の実施完了を意味しません。</span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>山口県立高校再編の意思決定過程</strong><p>公式資料へ戻りながら、学校のこれからを考える入口。</p></div>
+    <a href="#home">ページ上部へ</a>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="スマホ用メインナビゲーション">
+    <a href="#home"><span aria-hidden="true">⌂</span>ホーム</a>
+    <a href="#school-impact"><span aria-hidden="true">校</span>学校</a>
+    <a href="#plan-diff"><span aria-hidden="true">⇄</span>差分</a>
+    <a href="#timeline"><span aria-hidden="true">線</span>時系列</a>
+    <a href="#public-comment"><span aria-hidden="true">声</span>県民意見</a>
+  </nav>
+  <p class="load-error" id="load-error" role="alert" hidden>データを読み込めませんでした。リポジトリ直下をローカルサーバーにして開いてください。</p>
+</body>
+</html>
