@@ -92,3 +92,15 @@ h1, h2, h3, p { overflow-wrap: anywhere; } h1 { margin: 0; font-size: clamp(2.75
   .comment-response-summary { align-items: flex-start; }
   .comment-response-summary .comment-toggle { flex: 0 0 auto; }
 }
+
+/* Visible scope for accepted school-name filters */
+.school-filter-panel { margin: 26px 0 0; padding: 20px; border: 1px solid #a9c5bf; border-radius: 16px; background: rgba(255,255,255,.72); }
+.school-filter-panel legend { padding: 0 7px; color: var(--ink); font-weight: 900; }
+.school-filter-panel > p { margin: 0 0 14px; color: var(--muted); font-size: .86rem; }
+.school-filter-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+.school-filter-chip { min-height: 50px; padding: 9px 12px; border: 1px solid #8fb8ae; border-radius: 13px; background: #fff; color: var(--ink); font: inherit; font-size: .82rem; font-weight: 900; line-height: 1.35; cursor: pointer; }
+.school-filter-chip:hover { border-color: var(--teal); background: #edf8f5; }
+.school-filter-chip:focus-visible { outline: 3px solid rgba(20,98,112,.24); outline-offset: 2px; }
+.school-filter-chip.active { border-color: var(--teal); background: var(--teal); color: #fff; }
+@media (max-width: 900px) { .school-filter-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .school-filter-panel { padding: 17px 14px; } .school-filter-chip { min-height: 54px; padding: 8px; font-size: .76rem; } }

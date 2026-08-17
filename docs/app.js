@@ -75,12 +75,12 @@ function schoolCard(card) {
 }
 
 function applySchoolFilters() {
-  const query = $("#school-search").value.trim().toLowerCase();
+  const school = $("#school-search").value;
   const action = $("#school-action").value;
   const year = $("#school-year").value;
   let visible = 0;
   schoolCards.forEach((card) => {
-    const show = card.dataset.school.includes(query) && (action === "all" || card.dataset.action === action) && (year === "all" || card.dataset.year === year);
+    const show = (school === "all" || card.dataset.school === school.toLowerCase()) && (action === "all" || card.dataset.action === action) && (year === "all" || card.dataset.year === year);
     card.hidden = !show; if (show) visible += 1;
   });
   $("#school-count").textContent = `${visible}件を表示／全27件`;
@@ -161,8 +161,34 @@ function officialCommentLink(url, label, className = "") {
 
 function normalized(value) { return String(value || "").normalize("NFKC").toLowerCase(); }
 
+let activeCommentSchool = "all";
+
 function addOption(select, value, label) {
   const option = node("option", "", label); option.value = value; select.append(option);
+}
+
+function syncSchoolFilters(value) {
+  $$("#comment-school-filters [data-comment-school]").forEach((button) => {
+    const active = button.dataset.commentSchool === value;
+    button.classList.toggle("active", active); button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function setupSchoolFilters(section) {
+  const container = $("#comment-school-filters");
+  const sections = new Map();
+  section.responses.filter((item) => item.school_mentions?.length).forEach((item) => {
+    const key = [...item.school_mentions].sort().join("|");
+    if (!sections.has(key)) sections.set(key, { id: key, label: item.school_mentions.join("・") });
+  });
+  const choices = [{ id: "all", label: "学校を指定しない" }, ...sections.values()];
+  choices.forEach((choice) => {
+    const button = node("button", "school-filter-chip", choice.label); button.type = "button"; button.dataset.commentSchool = choice.id;
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => { activeCommentSchool = choice.id; syncSchoolFilters(choice.id); renderCommentList(); });
+    container.append(button);
+  });
+  syncSchoolFilters(activeCommentSchool);
 }
 
 function commentCard(item, section) {
@@ -207,9 +233,11 @@ function renderCommentList() {
   const query = normalized($("#comment-search").value.trim());
   const page = $("#comment-page").value; const topic = $("#comment-topic").value; const group = $("#comment-group").value;
   const responseText = new Map(section.responses.map((item) => [item.response_id, normalized(item.official_text)]));
+  const schoolSection = new Map(section.responses.map((item) => [item.group_id, [...(item.school_mentions || [])].sort().join("|")]));
   const selected = section.opinions.filter((item) => {
     const queryMatch = !query || normalized(item.official_text).includes(query) || responseText.get(item.response_id).includes(query);
-    return queryMatch && (page === "all" || String(item.source_page) === page) && (topic === "all" || item.topic_id === topic) && (group === "all" || item.group_id === group);
+    const schoolMatch = activeCommentSchool === "all" || schoolSection.get(item.group_id) === activeCommentSchool;
+    return queryMatch && schoolMatch && (page === "all" || String(item.source_page) === page) && (topic === "all" || item.topic_id === topic) && (group === "all" || item.group_id === group);
   });
   const ids = new Set(selected.map((item) => item.record_id)); const responseIds = new Set(selected.map((item) => item.response_id));
   const list = $("#comment-list"); list.replaceChildren(); selected.forEach((item) => list.append(commentCard(item, section)));
@@ -217,6 +245,7 @@ function renderCommentList() {
   $("#comment-count").textContent = `${selected.length}項目を表示／全${section.opinion_item_count}項目`;
   $("#comment-response-count").textContent = `${responseIds.size}回答を表示`;
   $("#comment-empty").hidden = selected.length !== 0;
+  syncSchoolFilters(activeCommentSchool);
 }
 
 function setupPublicComment() {
@@ -224,8 +253,9 @@ function setupPublicComment() {
   section.pages.forEach((page) => addOption($("#comment-page"), String(page), `物理p.${page}`));
   section.filters.topics.forEach((item) => addOption($("#comment-topic"), item.id, item.label));
   section.filters.groups.forEach((item) => addOption($("#comment-group"), item.id, item.label));
+  setupSchoolFilters(section);
   section.reading_boundaries.forEach((text) => $("#comment-boundary-list").append(node("li", "", text)));
-  const form = $("#comment-filters"); form.addEventListener("input", renderCommentList); form.addEventListener("change", renderCommentList); form.addEventListener("reset", () => setTimeout(renderCommentList));
+  const form = $("#comment-filters"); form.addEventListener("input", renderCommentList); form.addEventListener("change", renderCommentList); form.addEventListener("reset", () => setTimeout(() => { activeCommentSchool = "all"; renderCommentList(); }));
   renderCommentList();
 }
 
