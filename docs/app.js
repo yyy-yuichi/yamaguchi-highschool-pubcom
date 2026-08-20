@@ -27,26 +27,6 @@ function smoothTarget(id) {
   if (target) target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
 }
 
-function renderPersonas() {
-  const list = $("#persona-list");
-  bundle.personas.forEach((persona, index) => {
-    const button = node("button", "persona-card");
-    button.type = "button";
-    button.dataset.persona = persona.id;
-    button.append(node("span", "persona-number", String(index + 1).padStart(2, "0")));
-    button.append(node("strong", "", persona.label));
-    button.append(node("span", "", persona.short));
-    button.addEventListener("click", () => {
-      $$(".persona-card").forEach((item) => item.classList.toggle("active", item === button));
-      const guide = $("#persona-guide p");
-      guide.replaceChildren(node("strong", "", `${persona.label}の入口`), node("span", "", persona.prompt));
-      if (persona.target === "school-impact") setTimeout(() => $("#school-search").focus({ preventScroll: true }), 500);
-      smoothTarget(persona.target);
-    });
-    list.append(button);
-  });
-}
-
 function sourceRow(source) {
   const row = node("div", "source-row");
   row.append(node("span", "", source.stage_label));
@@ -236,7 +216,8 @@ function renderCommentList() {
   const schoolSection = new Map(section.responses.map((item) => [item.group_id, [...(item.school_mentions || [])].sort().join("|")]));
   const selected = section.opinions.filter((item) => {
     const queryMatch = !query || normalized(item.official_text).includes(query) || responseText.get(item.response_id).includes(query);
-    const schoolMatch = activeCommentSchool === "all" || schoolSection.get(item.group_id) === activeCommentSchool;
+    const namedSchool = activeCommentSchool.startsWith("school:") ? activeCommentSchool.slice(7) : null;
+    const schoolMatch = activeCommentSchool === "all" || (namedSchool ? (item.school_mentions || []).includes(namedSchool) : schoolSection.get(item.group_id) === activeCommentSchool);
     return queryMatch && schoolMatch && (page === "all" || String(item.source_page) === page) && (topic === "all" || item.topic_id === topic) && (group === "all" || item.group_id === group);
   });
   const ids = new Set(selected.map((item) => item.record_id)); const responseIds = new Set(selected.map((item) => item.response_id));
@@ -259,10 +240,194 @@ function setupPublicComment() {
   renderCommentList();
 }
 
+
+
+function journeyDetails(label, text) {
+  const details = node("details", "journey-details");
+  const summary = node("summary", "", label); details.append(summary, node("p", "journey-official-text", text)); return details;
+}
+
+function journeySourceLink(source) {
+  const link = node("a", "journey-source-link", `${source.stage_label}の公式PDF p.${source.page}`);
+  link.href = source.url; link.target = "_blank"; link.rel = "noopener noreferrer"; return link;
+}
+
+function journeyMissing(text) { return node("p", "journey-missing", `既存データでは確認できないこと：${text}`); }
+
+function selectedJourneyModel() {
+  const school = $("#journey-school-select").value;
+  return bundle.school_question_journey.schools.find((item) => item.school === school);
+}
+
+function journeyQuestionChecks() {
+  return ["#journey-question-check-school", "#journey-question-check-change", "#journey-question-check-unknown"].map((selector) => $(selector));
+}
+
+function resetJourneyQuestionChecks() { journeyQuestionChecks().forEach((item) => { item.checked = false; }); }
+
+function updateJourneyQuestion() {
+  const input = $("#journey-question-input"); const status = $("#journey-question-status");
+  const text = input.value.trim(); const minimum = bundle.school_question_journey.question_minimum_length;
+  const formatReady = text.length >= minimum && /[？?]$/.test(text);
+  const checkedCount = journeyQuestionChecks().filter((item) => item.checked).length;
+  const complete = formatReady && checkedCount === 3;
+  if (!text) { status.textContent = "まだ問いは入力されていません。"; status.dataset.complete = "false"; return; }
+  if (!formatReady) { status.textContent = `文章の形を確認してください。${minimum}文字以上で、最後を「？」にします。`; status.dataset.complete = "false"; return; }
+  status.textContent = complete ? "3点を自分で確認しました。問いが1つできました。" : `文章の形は整いました。3点のうち${checkedCount}点を確認済みです。`;
+  status.dataset.complete = String(complete);
+}
+
+function renderJourneyQuestionGuide(model) {
+  $("#journey-question-change").textContent = model.question_change_text;
+  $("#journey-question-unknown").textContent = model.question_unknown_text;
+  resetJourneyQuestionChecks();
+}
+
+function renderJourneyChange(model, cards) {
+  const content = $("#journey-change-content"); content.replaceChildren();
+  cards.forEach((card) => {
+    const block = node("section", "journey-record");
+    block.append(node("p", "journey-record-label", card.action_label), node("p", "journey-answer", card.action_text));
+    block.append(card.year_label ? node("p", "journey-year", `実施年度：${card.year_label}`) : journeyMissing("実施年度"));
+    const links = node("div", "journey-source-links"); card.sources.forEach((source) => links.append(journeySourceLink(source))); block.append(links); content.append(block);
+  });
+}
+
+function renderJourneyBasis(model, cards) {
+  const content = $("#journey-basis-content"); content.replaceChildren();
+  const explicit = cards.filter((card) => card.reason_status === "explicit_in_source");
+  if (!explicit.length) content.append(journeyMissing("この学校の変更について、計画本文に明記された学校別の目的・理由"));
+  explicit.forEach((card) => {
+    const block = node("section", "journey-record");
+    block.append(node("p", "journey-record-label", card.action_label), node("p", "journey-answer", card.action_text));
+    block.append(node("p", "journey-evidence-note", "計画本文の学校別記載です。県民意見への回答を変更理由として扱ってはいません。")); content.append(block);
+  });
+  const related = model.response_ids.map((id) => bundle.public_comment.responses.find((item) => item.response_id === id)).filter(Boolean);
+  if (related[0]) {
+    content.append(journeyDetails(`この学校名が明記された県回答${related[0].group_number}を読む`, related[0].official_text));
+    content.append(node("p", "journey-evidence-note", "関係する県回答として併記しています。計画変更との因果関係を示すものではありません。"));
+  }
+}
+
+function renderJourneyComments(model) {
+  const content = $("#journey-comment-content"); content.replaceChildren();
+  const opinions = model.opinion_record_ids.map((id) => bundle.public_comment.opinions.find((item) => item.record_id === id)).filter(Boolean);
+  const responses = model.response_ids.map((id) => bundle.public_comment.responses.find((item) => item.response_id === id)).filter(Boolean);
+  const button = $("#journey-comments-all");
+  button.hidden = true; button.textContent = "関連項目を一覧で見る";
+  content.append(node("p", "journey-metric", `${opinions.length}意見項目・${responses.length}県回答`));
+  if (!opinions.length && !responses.length) {
+    content.append(journeyMissing("この学校名が明記された県民意見・県回答")); return;
+  }
+  button.textContent = `関連する${opinions.length}意見・${responses.length}回答を一覧で見る`; button.hidden = false;
+  if (opinions[0]) content.append(journeyDetails(`意見項目${opinions[0].number}を読む`, opinions[0].official_text));
+  const linked = opinions[0] ? bundle.public_comment.responses.find((item) => item.response_id === opinions[0].response_id) : responses[0];
+  if (linked) content.append(journeyDetails(`対応する県回答${linked.group_number}を読む`, linked.official_text));
+}
+
+function accountabilityRow(label, text, tone = "") {
+  const row = node("div", `journey-accountability-row ${tone}`.trim());
+  row.append(node("strong", "", label), node("p", "", text));
+  return row;
+}
+
+function accountabilityQuestionExample(model, cards) {
+  const labels = [...new Set(cards.map((card) => card.action_label))].join("・");
+  const opinionCount = model.opinion_record_ids.length;
+  const responseCount = model.response_ids.length;
+  const comparisonIds = [...new Set(model.cards.map((reference) => reference.comparison_id))];
+  const statusLabels = [...new Set(comparisonIds.map((id) => bundle.diff_cards.find((item) => item.comparison_id === id)?.status_label).filter(Boolean))].join("・");
+  if (opinionCount || responseCount) {
+    return `${model.school}では、計画で「${labels}」が確認できます。学校名が明記された県民意見${opinionCount}項目・県回答${responseCount}件と、素案・最終計画の照合結果（${statusLabels}）の関係を、県はどの公式資料で説明していますか？`;
+  }
+  return `${model.school}では、計画で「${labels}」が確認できます。このデータでは学校名が明記された県民意見・県回答を確認できません。学校名が明記されていない意見を含め、県が計画への反映を説明した公式資料はありますか？`;
+}
+
+function renderJourneyAccountability(model, diffs) {
+  const content = $("#journey-accountability-content"); content.replaceChildren();
+  const opinionCount = model.opinion_record_ids.length;
+  const responseCount = model.response_ids.length;
+  const statusCounts = new Map();
+  diffs.forEach((diff) => statusCounts.set(diff.status_label, (statusCounts.get(diff.status_label) || 0) + 1));
+  const diffText = [...statusCounts].map(([label, count]) => `${label} ${count}件`).join("、");
+  const commentText = opinionCount || responseCount
+    ? `学校名が明記された県民意見${opinionCount}項目・県回答${responseCount}件を収録しています。`
+    : "このデータでは学校名が明記された項目を確認できません。意見がなかったという意味ではありません。";
+  const relationUnassessed = diffs.every((diff) => diff.public_comment_relation_status === "not_assessed");
+  const relationText = relationUnassessed
+    ? "差分データの県民意見との関係欄は「未評価」です。既存データでは、意見が変更・変更なしの理由になったか確認できません。"
+    : "関係が明記された差分があります。原文と出典を個別に確認してください。";
+  content.append(node("p", "journey-accountability-title", "意見・回答と計画差分の関係を確認"));
+  content.append(accountabilityRow("県民意見・県回答", commentText));
+  content.append(accountabilityRow("素案と最終計画", `${diffs.length}件を照合しました：${diffText}。`));
+  content.append(accountabilityRow("意見が変更理由か", relationText, relationUnassessed ? "is-unknown" : ""));
+  content.append(node("p", "journey-accountability-caution", "回答の掲載や計画差分があっても、それだけで意見が変更原因だったとは言えません。"));
+}
+
+function renderJourneyDiff(model) {
+  const content = $("#journey-diff-content"); content.replaceChildren();
+  const comparisonIds = [...new Set(model.cards.map((reference) => reference.comparison_id))];
+  const diffs = comparisonIds.map((comparisonId) => {
+    const diff = bundle.diff_cards.find((item) => item.comparison_id === comparisonId);
+    if (!diff) throw new Error("school journey comparison is missing");
+    const block = node("section", "journey-record");
+    block.append(node("p", `journey-diff-status status-${diff.status}`, `照合結果：${diff.status_label}`), node("p", "journey-answer", diff.summary));
+    const comparison = node("div", "journey-comparison");
+    comparison.append(diffSide("素案", diff.baseline_text, diff.baseline_page), node("span", "diff-arrow", diff.status === "same" ? "＝" : "→"), diffSide("最終版", diff.target_text, diff.target_page));
+    block.append(comparison); content.append(block);
+    return diff;
+  });
+  renderJourneyAccountability(model, diffs);
+}
+
+function renderJourneyUnknown(model) {
+  const content = $("#journey-unknown-content"); content.replaceChildren(); const list = node("ul", "journey-unknown-list");
+  const messages = {
+    implementation_year: "実施年度",
+    school_specific_basis: "計画本文に明記された学校別の目的・理由",
+    named_comments: "学校名が明記された県民意見・県回答",
+  };
+  model.missing_codes.forEach((code) => list.append(node("li", "", `既存データでは確認できないこと：${messages[code]}`)));
+  list.append(node("li", "", "既存データでは確認できないこと：県民意見・県回答と素案差分の因果関係（差分データでは未評価）"));
+  list.append(node("li", "", "このデータの公表後に、計画がどこまで実施されたかは確認していません。")); content.append(list);
+}
+
+function renderSelectedSchoolJourney() {
+  const model = selectedJourneyModel(); const results = $("#journey-results"); const status = $("#journey-school-status");
+  if (!model) { results.hidden = true; status.textContent = "学校を選ぶと、続く6項目を表示します。"; return; }
+  const cards = model.cards.map((reference) => bundle.school_cards.find((item) => item.group_id === reference.group_id)).filter(Boolean);
+  if (cards.length !== model.cards.length) throw new Error("school journey cards are incomplete");
+  status.textContent = `${model.school}について、既存データから${cards.length}件の変更を確認します。`; results.hidden = false;
+  renderJourneyChange(model, cards); renderJourneyBasis(model, cards); renderJourneyComments(model); renderJourneyDiff(model); renderJourneyUnknown(model); renderJourneyQuestionGuide(model);
+  const question = $("#journey-question-input"); question.value = ""; updateJourneyQuestion();
+}
+
+function setupSchoolQuestionJourney() {
+  const select = $("#journey-school-select");
+  bundle.school_question_journey.schools.forEach((model) => addOption(select, model.school, model.school));
+  select.addEventListener("change", renderSelectedSchoolJourney);
+  $("#journey-comments-all").addEventListener("click", () => {
+    const model = selectedJourneyModel(); if (!model) return;
+    activeCommentSchool = `school:${model.school}`;
+    $("#comment-search").value = ""; $("#comment-page").value = "all"; $("#comment-topic").value = "all"; $("#comment-group").value = "all";
+    renderCommentList(); smoothTarget("public-comment");
+  });
+  const question = $("#journey-question-input"); question.addEventListener("input", updateJourneyQuestion);
+  journeyQuestionChecks().forEach((item) => item.addEventListener("change", updateJourneyQuestion));
+  $("#journey-question-example").addEventListener("click", () => { const model = selectedJourneyModel(); if (!model) return; question.value = model.question_example; resetJourneyQuestionChecks(); updateJourneyQuestion(); question.focus(); });
+  $("#journey-question-accountability").addEventListener("click", () => {
+    const model = selectedJourneyModel(); if (!model) return;
+    const cards = model.cards.map((reference) => bundle.school_cards.find((item) => item.group_id === reference.group_id)).filter(Boolean);
+    question.value = accountabilityQuestionExample(model, cards); resetJourneyQuestionChecks(); updateJourneyQuestion(); question.focus();
+  });
+  $("#journey-question-clear").addEventListener("click", () => { question.value = ""; resetJourneyQuestionChecks(); updateJourneyQuestion(); question.focus(); });
+  updateJourneyQuestion();
+}
+
 async function initialize() {
   try {
     const response = await fetch("data/public_experience.json"); if (!response.ok) throw new Error(`HTTP ${response.status}`); bundle = await response.json();
-    renderPersonas(); renderSchools(); setupDiffs(); setupTimeline(); setupPublicComment(); renderScope();
+    renderSchools(); setupDiffs(); setupTimeline(); setupPublicComment(); setupSchoolQuestionJourney(); renderScope();
   } catch (error) { console.error(error); $("#load-error").hidden = false; }
 }
 

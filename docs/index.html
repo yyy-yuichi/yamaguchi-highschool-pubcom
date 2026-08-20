@@ -23,13 +23,12 @@
   <main id="main">
     <section class="hero section" id="home" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">UDC2026 作品②・公開候補</p>
-        <h1 id="hero-title">学校のこれからを、<br><span>決まるまで</span>たどる。</h1>
-        <p class="hero-lead">山口県立高校の再編について、学校への影響、素案と最終計画の違い、県民意見や県議会を含む出来事の順番を、公式資料へ戻りながら確認できます。</p>
+        <p class="eyebrow">県立高校への進学を検討する中学生の保護者へ</p>
+        <h1 id="hero-title">気になる高校のこれからを、<br><span>一校ずつ</span>たどる。</h1>
+        <p class="hero-lead">進学候補として気になる県立高校があるとき、何が・いつ変わるのか、県の根拠、県民意見と県回答、素案からの変更、まだ分からないことを順に確認し、具体的な問いを一つ作れます。</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#persona">自分の入口を選ぶ</a>
-          <a class="button button-secondary" href="#position">作品の現在地を見る</a>
-          <a class="button button-secondary" href="#public-comment">県民意見を見る</a>
+          <a class="button button-primary" href="#school-question-journey">候補校を一校選んで確認する</a>
+          <a class="button button-secondary" href="#detail-navigation">資料から詳しく調べる</a>
         </div>
         <p class="hero-note">再編への賛否や変更理由を自動判定する画面ではありません。</p>
       </div>
@@ -45,17 +44,46 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="persona" aria-labelledby="persona-title">
+    <section class="section journey-section" id="school-question-journey" aria-labelledby="journey-title">
+      <div class="section-heading heading-row journey-heading">
+        <div><p class="eyebrow">県立高校への進学を検討する中学生の保護者へ</p><h2 id="journey-title">候補校を一校選び、問いを一つ作る。</h2><p>気になる学校について、既存の公開データで確認できることと確認できないことを7つの順番でたどります。</p></div>
+        <span class="stage-badge journey-stage">公開検証版</span>
+      </div>
+      <ol class="journey-index" aria-label="一校について問いを作る7段階">
+        <li><a href="#journey-school"><span>1</span>学校を選ぶ</a></li>
+        <li><a href="#journey-change"><span>2</span>何が・いつ</a></li>
+        <li><a href="#journey-basis"><span>3</span>県の根拠</a></li>
+        <li><a href="#journey-comments"><span>4</span>意見と回答</a></li>
+        <li><a href="#journey-diff"><span>5</span>素案との差</a></li>
+        <li><a href="#journey-unknown"><span>6</span>まだ不明</a></li>
+        <li><a href="#journey-question"><span>7</span>問いを作る</a></li>
+      </ol>
+      <div class="journey-steps">
+        <article class="journey-card journey-school-card" id="journey-school"><div class="journey-step-head"><span>1</span><div><p>既存の学校変更データから生成</p><h3>学校を一校選ぶ</h3></div></div><label for="journey-school-select">確認する学校</label><select id="journey-school-select"><option value="">学校を選んでください</option></select><p class="journey-local-note" id="journey-school-status" role="status" aria-live="polite">学校を選ぶと、続く6項目を表示します。</p></article>
+        <div id="journey-results" hidden>
+          <article class="journey-card" id="journey-change"><div class="journey-step-head"><span>2</span><div><p>計画に記載された変更</p><h3>何が・いつ変わるか</h3></div></div><div id="journey-change-content"></div></article>
+          <article class="journey-card" id="journey-basis"><div class="journey-step-head"><span>3</span><div><p>学校変更カードの公式記載</p><h3>県が示した根拠</h3></div></div><div id="journey-basis-content"></div><p class="journey-caution">県民意見や県回答が最終計画を変えた、という因果関係を示すものではありません。</p></article>
+          <article class="journey-card" id="journey-comments"><div class="journey-step-head"><span>4</span><div><p>学校名が明記された項目</p><h3>関係する県民意見と県回答</h3></div></div><div id="journey-comment-content"></div><button class="button button-primary" id="journey-comments-all" type="button">関連項目を一覧で見る</button></article>
+          <article class="journey-card" id="journey-diff"><div class="journey-step-head"><span>5</span><div><p>意見・回答との関係も区別</p><h3>素案からの変更</h3></div></div><div id="journey-diff-content"></div><div id="journey-accountability-content" class="journey-accountability" aria-live="polite"></div></article>
+          <article class="journey-card" id="journey-unknown"><div class="journey-step-head"><span>6</span><div><p>情報がない箇所を推測しない</p><h3>現在も分からないこと</h3></div></div><div id="journey-unknown-content"></div></article>
+          <article class="journey-card journey-question-card" id="journey-question"><div class="journey-step-head"><span>7</span><div><p>外部へは送信しません</p><h3>具体的な問いを一つ作る</h3></div></div><p id="journey-question-guide">学校名、確認できた変更、まだ分からないことの3点をつないで質問にします。</p><div class="journey-question-parts" aria-live="polite"><p><strong>確認できた変更</strong><span id="journey-question-change"></span></p><p><strong>まだ分からないこと</strong><span id="journey-question-unknown"></span></p></div><label for="journey-question-input">あなたの問い</label><textarea id="journey-question-input" rows="5" maxlength="240" placeholder="例文を入れて、3点が伝わる自分の言葉に直してみましょう。" aria-describedby="journey-question-guide journey-question-note journey-question-status"></textarea><div class="journey-question-actions"><button class="button button-primary" id="journey-question-example" type="button">現在の不明点を問う例文</button><button class="button button-secondary" id="journey-question-accountability" type="button">意見と計画の関係を問う例文</button><button class="button button-secondary" id="journey-question-clear" type="button">消す</button></div><fieldset class="journey-question-checks"><legend>書いた問いを自分で確認</legend><label><input id="journey-question-check-school" type="checkbox"> 学校名が入っている</label><label><input id="journey-question-check-change" type="checkbox"> 確認できた変更が入っている</label><label><input id="journey-question-check-unknown" type="checkbox"> まだ分からないことを推測せず尋ねている</label></fieldset><p class="journey-question-status" id="journey-question-status" role="status" aria-live="polite">まだ問いは入力されていません。</p><p class="journey-local-note" id="journey-question-note">この画面は内容を自動判定しません。3点は自分で確認します。入力内容は送信・保存しません。</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-soft detail-navigation" id="detail-navigation" aria-labelledby="detail-navigation-title">
       <div class="section-heading">
-        <p class="eyebrow">あなたに合わせて始める</p>
-        <h2 id="persona-title">何を知りたいですか？</h2>
-        <p>立場を選ぶと、最初に見る場所と読み方を案内します。</p>
+        <p class="eyebrow">資料から詳しく調べる</p>
+        <h2 id="detail-navigation-title">確認したい内容から、既存資料へ進む。</h2>
+        <p>学校別の7段階とは別に、収録済みの資料全体を種類ごとに確認できます。</p>
       </div>
-      <div class="persona-grid" id="persona-list" aria-label="利用者別の入口"></div>
-      <div class="persona-guide" id="persona-guide" aria-live="polite">
-        <span class="guide-icon" aria-hidden="true">→</span>
-        <p><strong>入口を選んでください</strong><span>保護者、中学生、地域住民、県議会議員の4つから選べます。</span></p>
-      </div>
+      <nav class="detail-nav-grid" aria-label="資料別の詳しい入口">
+        <a class="detail-nav-card" href="#school-impact"><span class="detail-nav-number">01</span><strong>学校への変更</strong><p>23校・27件の変更と年度を学校名から確認します。</p><span class="detail-nav-link">変更一覧を見る →</span></a>
+        <a class="detail-nav-card" href="#plan-diff"><span class="detail-nav-number">02</span><strong>素案と最終計画の差</strong><p>計画全文を照合した111件から、変更・追加・削除を確認します。</p><span class="detail-nav-link">計画差分を見る →</span></a>
+        <a class="detail-nav-card" href="#public-comment"><span class="detail-nav-number">03</span><strong>県民意見と県回答</strong><p>382意見項目と78県回答を、確認済みの学校や論点から探します。</p><span class="detail-nav-link">意見と回答を見る →</span></a>
+        <a class="detail-nav-card" href="#timeline"><span class="detail-nav-number">04</span><strong>決定までの時系列</strong><p>計画、県民意見、県議会、背景統計の出来事を順番で確認します。</p><span class="detail-nav-link">時系列を見る →</span></a>
+      </nav>
     </section>
 
     <section class="section position-section" id="position" aria-labelledby="position-title">

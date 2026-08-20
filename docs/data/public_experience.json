@@ -1925,16 +1925,16 @@
     {
       "id": "parent",
       "label": "保護者",
-      "prompt": "学校名を入力して、素案と最終版の根拠を見比べます。",
-      "short": "学校名から変更と年度を確認",
-      "target": "school-impact"
+      "prompt": "学校を一校選び、確認済みの情報から具体的な問いまで順にたどります。",
+      "short": "学校を選んで問いまで順に確認",
+      "target": "school-question-journey"
     },
     {
       "id": "student",
       "label": "中学生",
-      "prompt": "学校と実施年度を、短い説明から確認します。",
-      "short": "進学先候補の予定を確認",
-      "target": "school-impact"
+      "prompt": "学校を一校選び、確認済みの情報から具体的な問いまで順にたどります。",
+      "short": "学校を選んで問いまで順に確認",
+      "target": "school-question-journey"
     },
     {
       "id": "resident",
@@ -12431,7 +12431,886 @@
       "year_label": null
     }
   ],
-  "task_id": "W2-PUBLIC-COMMENT-REMAINING-PAGES-INTEGRATION-1",
+  "school_question_journey": {
+    "question_completion_rule": "format_plus_three_part_self_check",
+    "question_minimum_length": 15,
+    "question_rubric": [
+      "school",
+      "confirmed_change",
+      "unknown_without_assumption"
+    ],
+    "school_count": 23,
+    "schools": [
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-6d76e36683a584e49701",
+            "group_id": "CMP-8f7daadb385f2547"
+          }
+        ],
+        "missing_codes": [
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "令和１０年度（2028 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置",
+        "question_example": "下関北高校について、計画では「令和１０年度（2028 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置」とされていますが、学校名が明記された県民意見・県回答を確認できる資料はありますか？",
+        "question_unknown_code": "named_comments",
+        "question_unknown_text": "学校名が明記された県民意見・県回答",
+        "response_ids": [],
+        "school": "下関北高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-6b0a3d210b72b4e280e3",
+            "group_id": "CMP-60a4fe28ea32dbf9"
+          },
+          {
+            "comparison_id": "PVFM-32c978874efafe012860",
+            "group_id": "CMP-c66cb14fe665d626"
+          }
+        ],
+        "missing_codes": [],
+        "opinion_record_ids": [
+          "PCD-P-ebd97c5d39b0be9f3b99d56d",
+          "PCD-P-12aeb4de2f794eefe40fee77",
+          "PCD-P-b5ad3290d05aedac5f859648"
+        ],
+        "question_change_text": "令和１０年度（2028 年度）に、新高校として独立する準備を進めるため、夜間部の生徒募集を停止／令和１３年度（2031 年度）に、多様な学びのニーズに対応するため、午前部と午後部を併せもつ多部制定時制の新高校として独立",
+        "question_example": "岩国商業高校東分校について、計画では「令和１０年度（2028 年度）に、新高校として独立する準備を進めるため、夜間部の生徒募集を停止／令和１３年度（2031 年度）に、多様な学びのニーズに対応するため、午前部と午後部を併せもつ多部制定時制の新高校として独立」とされていますが、このデータの公表後に計画がどこまで実施されたかを確認できる資料はありますか？",
+        "question_unknown_code": "post_publication_progress",
+        "question_unknown_text": "このデータの公表後に計画がどこまで実施されたか",
+        "response_ids": [
+          "PCD-P-RSP-1266fa89cc37f184"
+        ],
+        "school": "岩国商業高校東分校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-083baee103a6e20f9b3b",
+            "group_id": "CMP-19f45181adafbe23"
+          },
+          {
+            "comparison_id": "PVFM-9d1cf1551733b2c2928a",
+            "group_id": "CMP-c202d313f40b82a5"
+          }
+        ],
+        "missing_codes": [
+          "implementation_year",
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "令和１０年度（2028 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置／実施年度の記載はなく、美祢青嶺高校の工業に関する学科について、時代のニーズに応じた工業教育を推進するため、学科改編を検討",
+        "question_example": "美祢青嶺高校について、計画では「令和１０年度（2028 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置／実施年度の記載はなく、美祢青嶺高校の工業に関する学科について、時代のニーズに応じた工業教育を推進するため、学科改編を検討」とされていますが、実施年度を確認できる資料はありますか？",
+        "question_unknown_code": "implementation_year",
+        "question_unknown_text": "実施年度",
+        "response_ids": [],
+        "school": "美祢青嶺高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-8d35cb395621e2e06ac6",
+            "group_id": "CMP-19fc32066a46a0b3"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-590572dbd36636439ebbd6b0",
+          "PCD-P-b2134eb09ad4fc516c105e51",
+          "PCD-P-627a9e7778be50a764bd3f21",
+          "PCD-P-d5a8b014f9affa7b0a1d0b9a",
+          "PCD-P-612f3c927fbf2156a5fc7550",
+          "PCD-P-fa5507e94be1dcb862cc26a3",
+          "PCD-P-ea7c255b5e61533d8da9e5a4",
+          "PCD-P-ea0b38371207ac419d85f1dc",
+          "PCD-P-9b99fbea993402a4a2107a2d",
+          "PCD-P-3ca5cfcc81497b32375ebab6",
+          "PCD-P-53b63f1ba1c97380807e9973",
+          "PCD-P-e14b10f104f978584e3ea3d9",
+          "PCD-P-c28482d70f2beb7c09577f2a",
+          "PCD-P-8712e3d0d58840f783c416b0",
+          "PCD-P-8c1aea41fc140f54745d6133",
+          "PCD-P-afabd406164af4c2daf2a411",
+          "PCD-P-8e241df138bc468119e5592e",
+          "PCD-P-4741fc2c54cc1e3090b20065",
+          "PCD-P-49b4657524032c8bc01c4c6d",
+          "PCD-P-f8bcaabf664037afd75f05bd",
+          "PCD-P-936101ab39905e7855c78723",
+          "PCD-P-67061571e04db4a841e36f71",
+          "PCD-P-386ad2b6c92ca36bc73c5e11",
+          "PCD-P-6cadbe8d66012e1dd5d28f1b",
+          "PCD-P-ba4dc959d4bd3de0b9796467"
+        ],
+        "question_change_text": "令和１１年度（2029 年度）に、下松高校と華陵高校を再編統合して、普通教育を主とする学科、外国語に関する学科を有する新高校を設置（校地：下松高校）",
+        "question_example": "下松高校について、計画では「令和１１年度（2029 年度）に、下松高校と華陵高校を再編統合して、普通教育を主とする学科、外国語に関する学科を有する新高校を設置（校地：下松高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-de2047507509c0ad",
+          "PCD-P-RSP-7611ad0c0d19e56c",
+          "PCD-P-RSP-eecb5d7430d040a5",
+          "PCD-P-RSP-528970e6fb5fb56d",
+          "PCD-P-RSP-ec9cce92b4cf1ecd",
+          "PCD-P-RSP-c4ee5a2f8c476b9e",
+          "PCD-P-RSP-b8e56b6edae30125",
+          "PCD-P-RSP-ddda8dace473a261"
+        ],
+        "school": "下松高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-8d35cb395621e2e06ac6",
+            "group_id": "CMP-e6acef088dc5d8b1"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-590572dbd36636439ebbd6b0",
+          "PCD-P-b2134eb09ad4fc516c105e51",
+          "PCD-P-627a9e7778be50a764bd3f21",
+          "PCD-P-d5a8b014f9affa7b0a1d0b9a",
+          "PCD-P-612f3c927fbf2156a5fc7550",
+          "PCD-P-fa5507e94be1dcb862cc26a3",
+          "PCD-P-ea7c255b5e61533d8da9e5a4",
+          "PCD-P-ea0b38371207ac419d85f1dc",
+          "PCD-P-9b99fbea993402a4a2107a2d",
+          "PCD-P-3ca5cfcc81497b32375ebab6",
+          "PCD-P-53b63f1ba1c97380807e9973",
+          "PCD-P-e14b10f104f978584e3ea3d9",
+          "PCD-P-c28482d70f2beb7c09577f2a",
+          "PCD-P-8712e3d0d58840f783c416b0",
+          "PCD-P-8c1aea41fc140f54745d6133",
+          "PCD-P-afabd406164af4c2daf2a411",
+          "PCD-P-8e241df138bc468119e5592e",
+          "PCD-P-4741fc2c54cc1e3090b20065",
+          "PCD-P-49b4657524032c8bc01c4c6d",
+          "PCD-P-f8bcaabf664037afd75f05bd",
+          "PCD-P-936101ab39905e7855c78723",
+          "PCD-P-67061571e04db4a841e36f71",
+          "PCD-P-386ad2b6c92ca36bc73c5e11",
+          "PCD-P-6cadbe8d66012e1dd5d28f1b",
+          "PCD-P-ba4dc959d4bd3de0b9796467"
+        ],
+        "question_change_text": "令和１１年度（2029 年度）に、下松高校と華陵高校を再編統合して、普通教育を主とする学科、外国語に関する学科を有する新高校を設置（校地：下松高校）",
+        "question_example": "華陵高校について、計画では「令和１１年度（2029 年度）に、下松高校と華陵高校を再編統合して、普通教育を主とする学科、外国語に関する学科を有する新高校を設置（校地：下松高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-de2047507509c0ad",
+          "PCD-P-RSP-7611ad0c0d19e56c",
+          "PCD-P-RSP-eecb5d7430d040a5",
+          "PCD-P-RSP-528970e6fb5fb56d",
+          "PCD-P-RSP-ec9cce92b4cf1ecd",
+          "PCD-P-RSP-c4ee5a2f8c476b9e",
+          "PCD-P-RSP-b8e56b6edae30125",
+          "PCD-P-RSP-ddda8dace473a261"
+        ],
+        "school": "華陵高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-2f0aee67ace9246f6195",
+            "group_id": "CMP-ff5a6af22e4176e6"
+          }
+        ],
+        "missing_codes": [],
+        "opinion_record_ids": [
+          "PCD-P-443761e8db75779d9487efc3",
+          "PCD-P-2bd22354428f11250d01c69f",
+          "PCD-P-3397b5709c5b817d0e16b11b",
+          "PCD-P-2fa21784e591d12a120d50ea",
+          "PCD-P-dd0cd2f96c7eb1caf7fd3cc1"
+        ],
+        "question_change_text": "令和１１年度（2029 年度）に、普通教育に加え、福祉や保育、芸術等に関する専門教育などを通して、大学等への進学や就職に向けた教育の充実を図るため、総合学科を学科改編し、特色ある学科を設置",
+        "question_example": "防府西高校について、計画では「令和１１年度（2029 年度）に、普通教育に加え、福祉や保育、芸術等に関する専門教育などを通して、大学等への進学や就職に向けた教育の充実を図るため、総合学科を学科改編し、特色ある学科を設置」とされていますが、このデータの公表後に計画がどこまで実施されたかを確認できる資料はありますか？",
+        "question_unknown_code": "post_publication_progress",
+        "question_unknown_text": "このデータの公表後に計画がどこまで実施されたか",
+        "response_ids": [
+          "PCD-P-RSP-26ae97ce239c43ac",
+          "PCD-P-RSP-7dbb4bd049bf0c5e",
+          "PCD-P-RSP-b6386d6ce1d44bf9",
+          "PCD-P-RSP-21f25e20cf33c0f2"
+        ],
+        "school": "防府西高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-0b078f6b62cd09093f7b",
+            "group_id": "CMP-b8a3206059ad0f5f"
+          }
+        ],
+        "missing_codes": [
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "令和１１年度（2029 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置",
+        "question_example": "高森高校について、計画では「令和１１年度（2029 年度）に、地域と連携した課題解決型学習等の探究活動などを通して、大学等への進学や就職に向けた教育の充実を図るため、普通科を学科改編し、特色ある学科を設置」とされていますが、学校名が明記された県民意見・県回答を確認できる資料はありますか？",
+        "question_unknown_code": "named_comments",
+        "question_unknown_text": "学校名が明記された県民意見・県回答",
+        "response_ids": [],
+        "school": "高森高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-759de6787013cea891e0",
+            "group_id": "CMP-4078103736ecb9e9"
+          },
+          {
+            "comparison_id": "PVFM-a49e1ba239c4791a972d",
+            "group_id": "CMP-819c7369ab18bcb8"
+          }
+        ],
+        "missing_codes": [],
+        "opinion_record_ids": [
+          "PCD-P-4b44ddd7ec8d8d6b42d7a901",
+          "PCD-P-ff45de1bef01eaeec6a4fff7",
+          "PCD-P-a0cfbe94e598b7334fb3b5f7",
+          "PCD-P-467c906d56a3f14d723e8ee5",
+          "PCD-P-f512536938e649c35f1e7fde",
+          "PCD-P-7c56ae4aa0162428ec0e8c24",
+          "PCD-P-f50db6109a1267de437b7ec3",
+          "PCD-P-2b3567524c678659ec8fe34c",
+          "PCD-P-fa37ef27389da4f422dbd16f",
+          "PCD-P-635be4afd59eb4f4632bc3cb",
+          "PCD-P-f26846a6b201f45858eefd76",
+          "PCD-P-eb2d8e7071be2b5e6247ea44",
+          "PCD-P-c44d6a68c7a96b2ab8fe0c18",
+          "PCD-P-b0b816cfc6fce5520918f6ae",
+          "PCD-P-666ed76ea2b1e2293c08c1af",
+          "PCD-P-144102339f3fa2d332be3f26",
+          "PCD-P-012507f3edf114e946f02711",
+          "PCD-P-102c1c736b7359bbdf7a53b7",
+          "PCD-P-67f65eb1984526bcf0d89e25",
+          "PCD-P-a159b0c25de3a4b85eaf0c7c",
+          "PCD-P-5446a466d841ce0474468a05",
+          "PCD-P-20187b3ca4e3a18c37d329a8",
+          "PCD-P-a973cae82d198af32587293e",
+          "PCD-P-7b94475b33efeeb994d2626b",
+          "PCD-P-bc9c663d86e6dd9f30508f99",
+          "PCD-P-d3db32ead266d79749236bfc",
+          "PCD-P-664e7b30813b54c2ca55d63c",
+          "PCD-P-cab716425074583f1d991424",
+          "PCD-P-5aab9a02377127af9c4e87d0",
+          "PCD-P-99f414b6577a163a30fd58be",
+          "PCD-P-6d1600495d4fcfc3accdf6f6"
+        ],
+        "question_change_text": "令和１２年度（2030 年度）に、全日制課程の再編統合を踏まえて、生徒募集を停止／令和１３年度（2031 年度）に、宇部工業高校と小野田工業高校を再編統合して、両校が行ってきた工業教育を踏まえ、工業科の教育機能の充実を図る新高校を設置（校地：宇部工業高校）",
+        "question_example": "小野田工業高校について、計画では「令和１２年度（2030 年度）に、全日制課程の再編統合を踏まえて、生徒募集を停止／令和１３年度（2031 年度）に、宇部工業高校と小野田工業高校を再編統合して、両校が行ってきた工業教育を踏まえ、工業科の教育機能の充実を図る新高校を設置（校地：宇部工業高校）」とされていますが、このデータの公表後に計画がどこまで実施されたかを確認できる資料はありますか？",
+        "question_unknown_code": "post_publication_progress",
+        "question_unknown_text": "このデータの公表後に計画がどこまで実施されたか",
+        "response_ids": [
+          "PCD-P-RSP-a8d008836f6d20df",
+          "PCD-P-RSP-4bbdc562ce0c3d10",
+          "PCD-P-RSP-c8a31c5ee996ace4",
+          "PCD-P-RSP-1611d34ce8c9a4f5",
+          "PCD-P-RSP-0c88d5063dabfc00",
+          "PCD-P-RSP-a7cb3422c2ee68f7",
+          "PCD-P-RSP-9609b47b3f9fce7c"
+        ],
+        "school": "小野田工業高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-7780d97b98765028e1a4",
+            "group_id": "CMP-4594a18b3b5cd08e"
+          },
+          {
+            "comparison_id": "PVFM-7780d97b98765028e1a4",
+            "group_id": "CMP-edcbc5ad707980a0"
+          }
+        ],
+        "missing_codes": [
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "令和１２年度（2030 年度）に、教員をめざす生徒への教育の充実を図るため、普通科に教職コースを設置／令和１２年度（2030 年度）に、大学・関係機関等と連携し、大学等への進学を見据えた情報教育の充実を図るため、情報に関する学科を設置",
+        "question_example": "山口中央高校について、計画では「令和１２年度（2030 年度）に、教員をめざす生徒への教育の充実を図るため、普通科に教職コースを設置／令和１２年度（2030 年度）に、大学・関係機関等と連携し、大学等への進学を見据えた情報教育の充実を図るため、情報に関する学科を設置」とされていますが、学校名が明記された県民意見・県回答を確認できる資料はありますか？",
+        "question_unknown_code": "named_comments",
+        "question_unknown_text": "学校名が明記された県民意見・県回答",
+        "response_ids": [],
+        "school": "山口中央高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-30ffe3e46b491e60488e",
+            "group_id": "CMP-fb00845ef25037c9"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-7f718bc6e14147777e28cf23",
+          "PCD-P-b4ecfa65023830d58b3d9d78",
+          "PCD-P-62aa4615637653052ce07844",
+          "PCD-P-ad81d15ea205d39c0b1b6b12",
+          "PCD-P-9322a7a9bbe9c76f03d7c439",
+          "PCD-P-e82183f6d6b449b8b8f4ef0c",
+          "PCD-P-6e2f1d681535a65fd1896524",
+          "PCD-P-3b23ae9f67fbb045a0ab3373",
+          "PCD-P-8854d40d9b50df18c97b1081",
+          "PCD-P-ed61b39c9cb3390797dce884",
+          "PCD-P-5ba96d0db494f4490de16122",
+          "PCD-P-42236278c647d07f62c65fab",
+          "PCD-P-4106b7169c1dc2e0f7f27f9c",
+          "PCD-P-b6a1f611f40bd6c316adbccb",
+          "PCD-P-82af4bd7c2e95e6f3ad76817",
+          "PCD-P-04097f624d2d87f787383778",
+          "PCD-P-1e7b660259987b51b4c64cb2",
+          "PCD-P-2690332c926be04ed5ebc768",
+          "PCD-P-6cbcce5cdceaca397ee19409"
+        ],
+        "question_change_text": "令和１２年度（2030 年度）に、萩高校と萩商工高校を再編統合して、普通教育を主とする学科、文理探究科、商業及び工業に関する学科を有する新高校を設置（校地：萩高校）",
+        "question_example": "萩商工高校について、計画では「令和１２年度（2030 年度）に、萩高校と萩商工高校を再編統合して、普通教育を主とする学科、文理探究科、商業及び工業に関する学科を有する新高校を設置（校地：萩高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-dd1676ed5477ae24",
+          "PCD-P-RSP-c06872de0655d608",
+          "PCD-P-RSP-a996f58aa2f8ad34",
+          "PCD-P-RSP-b91f78947983e178",
+          "PCD-P-RSP-a227a6a69e9bdc98"
+        ],
+        "school": "萩商工高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-30ffe3e46b491e60488e",
+            "group_id": "CMP-e5097952fbd5ac59"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-7f718bc6e14147777e28cf23",
+          "PCD-P-b4ecfa65023830d58b3d9d78",
+          "PCD-P-62aa4615637653052ce07844",
+          "PCD-P-ad81d15ea205d39c0b1b6b12",
+          "PCD-P-9322a7a9bbe9c76f03d7c439",
+          "PCD-P-e82183f6d6b449b8b8f4ef0c",
+          "PCD-P-6e2f1d681535a65fd1896524",
+          "PCD-P-3b23ae9f67fbb045a0ab3373",
+          "PCD-P-8854d40d9b50df18c97b1081",
+          "PCD-P-ed61b39c9cb3390797dce884",
+          "PCD-P-5ba96d0db494f4490de16122",
+          "PCD-P-42236278c647d07f62c65fab",
+          "PCD-P-4106b7169c1dc2e0f7f27f9c",
+          "PCD-P-b6a1f611f40bd6c316adbccb",
+          "PCD-P-82af4bd7c2e95e6f3ad76817",
+          "PCD-P-04097f624d2d87f787383778",
+          "PCD-P-1e7b660259987b51b4c64cb2",
+          "PCD-P-2690332c926be04ed5ebc768",
+          "PCD-P-6cbcce5cdceaca397ee19409"
+        ],
+        "question_change_text": "令和１２年度（2030 年度）に、萩高校と萩商工高校を再編統合して、普通教育を主とする学科、文理探究科、商業及び工業に関する学科を有する新高校を設置（校地：萩高校）",
+        "question_example": "萩高校について、計画では「令和１２年度（2030 年度）に、萩高校と萩商工高校を再編統合して、普通教育を主とする学科、文理探究科、商業及び工業に関する学科を有する新高校を設置（校地：萩高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-dd1676ed5477ae24",
+          "PCD-P-RSP-c06872de0655d608",
+          "PCD-P-RSP-a996f58aa2f8ad34",
+          "PCD-P-RSP-b91f78947983e178",
+          "PCD-P-RSP-a227a6a69e9bdc98"
+        ],
+        "school": "萩高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-3e5f8675d3f583e5d4a7",
+            "group_id": "CMP-d7dbaae1c7d1f5f7"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-9a5d6d9e67b747fde6a11be1",
+          "PCD-P-102ae8e1a4f86d5fb3f07439",
+          "PCD-P-f6b495aac3c5b35c7622af3c",
+          "PCD-P-0eabd0621251dc532ead4862",
+          "PCD-P-6f1c47606861128d44bc4737"
+        ],
+        "question_change_text": "令和１２年度（2030 年度）に、豊浦高校と長府高校を再編統合して、両校が行ってきた教育活動を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：豊浦高校）",
+        "question_example": "豊浦高校について、計画では「令和１２年度（2030 年度）に、豊浦高校と長府高校を再編統合して、両校が行ってきた教育活動を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：豊浦高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-37ef5a22036ff159",
+          "PCD-P-RSP-a8187cd742e78d06",
+          "PCD-P-RSP-3afef69cf1703d1d"
+        ],
+        "school": "豊浦高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-3e5f8675d3f583e5d4a7",
+            "group_id": "CMP-5a4b7376cfb0cab6"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-9a5d6d9e67b747fde6a11be1",
+          "PCD-P-102ae8e1a4f86d5fb3f07439",
+          "PCD-P-f6b495aac3c5b35c7622af3c",
+          "PCD-P-0eabd0621251dc532ead4862",
+          "PCD-P-6f1c47606861128d44bc4737"
+        ],
+        "question_change_text": "令和１２年度（2030 年度）に、豊浦高校と長府高校を再編統合して、両校が行ってきた教育活動を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：豊浦高校）",
+        "question_example": "長府高校について、計画では「令和１２年度（2030 年度）に、豊浦高校と長府高校を再編統合して、両校が行ってきた教育活動を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：豊浦高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-37ef5a22036ff159",
+          "PCD-P-RSP-a8187cd742e78d06",
+          "PCD-P-RSP-3afef69cf1703d1d"
+        ],
+        "school": "長府高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-557ed00c4b75425445d5",
+            "group_id": "CMP-7dcee0e076e7a0cc"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-ad32f8f1820a615abadf04d4",
+          "PCD-P-826284cfc68dc3048f01950d",
+          "PCD-P-29dd523ad9332dd67c8c64f1",
+          "PCD-P-973a9a04546b1e7a7563d43b",
+          "PCD-P-b313365af8f174dcad338e69",
+          "PCD-P-439d99b0ecb92b5203c3358f",
+          "PCD-P-b849df5503a776c5fd7b788b",
+          "PCD-P-1384e2bcf6f3c5111d79005f",
+          "PCD-P-47e4dbc15720432a495d3467",
+          "PCD-P-85d3d33b8ba6d348e8284534",
+          "PCD-P-fa67e1566a205558fc404e2a",
+          "PCD-P-4e84f09aa685a2741b59a9f9",
+          "PCD-P-c49f746391b7115220664e2e",
+          "PCD-P-ff4ea684bb95476e8d965b42",
+          "PCD-P-5c3c755356aa046e94b4cac9",
+          "PCD-P-81dfa2551e2b2ed0b97f2478",
+          "PCD-P-81e07ce1c4aa4f738711b889",
+          "PCD-P-eea4dce594398df4ced295bd",
+          "PCD-P-774ec7c40564a13e44268208",
+          "PCD-P-5e8a7f59bcb51bb9b1d67fae",
+          "PCD-P-714ad220f438fff8d33631c4",
+          "PCD-P-e723b9d756bd064b74ad0969",
+          "PCD-P-becdcc03d0276a8c833791c1",
+          "PCD-P-6fe10fc285bbaf4cd33a4f00",
+          "PCD-P-b3047c126e424fb66521c2c7",
+          "PCD-P-2b9457808de7c4dc6c13ed3f",
+          "PCD-P-38d265435f5e65453ec90156",
+          "PCD-P-e22c6c5e192622f5e8f0d69f",
+          "PCD-P-c23d794a535fa70985ee819d",
+          "PCD-P-badcbddab40ef9fbc30f86ef",
+          "PCD-P-a05876fd9173461294333a5c",
+          "PCD-P-6df2c42acb42f990f727fa03",
+          "PCD-P-a7154deb995c70c063972855",
+          "PCD-P-99efb18222314cca8cc11113",
+          "PCD-P-1f17914506484b9876225608",
+          "PCD-P-510d37c72c69746469cd76ee",
+          "PCD-P-72eecf2e5db4a09cd5c346e7",
+          "PCD-P-b6216d9fe8b0deb24febb802",
+          "PCD-P-11385695c5e0b8520dbce239",
+          "PCD-P-7a87668eba4a4f59c9b7b2ab",
+          "PCD-P-59a792326d030aac131d4362",
+          "PCD-P-046b183ef5deaa23c27ca455",
+          "PCD-P-419b1292d3e2b2e81ef63d84",
+          "PCD-P-f6d0c4aaa01ea715f327364a",
+          "PCD-P-ba82f72f8f2986e2ea645b34"
+        ],
+        "question_change_text": "令和１３年度（2031 年度）に、新南陽高校と南陽工業高校を再編統合して、普通教育を主とする学科、工業に関する学科を有する新高校を設置（校地：南陽工業高校）",
+        "question_example": "南陽工業高校について、計画では「令和１３年度（2031 年度）に、新南陽高校と南陽工業高校を再編統合して、普通教育を主とする学科、工業に関する学科を有する新高校を設置（校地：南陽工業高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-33d057391733b34e",
+          "PCD-P-RSP-feba79fe516f331a",
+          "PCD-P-RSP-8d895c42f53bc289",
+          "PCD-P-RSP-b5fd7ae989364f6a",
+          "PCD-P-RSP-37c02a65fd8738a9",
+          "PCD-P-RSP-826868f49676fdbf",
+          "PCD-P-RSP-93bc274a1c11c274",
+          "PCD-P-RSP-373bc90a91bdd768",
+          "PCD-P-RSP-ba2354acb4c65258",
+          "PCD-P-RSP-d398afc3ef71984d"
+        ],
+        "school": "南陽工業高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-a49e1ba239c4791a972d",
+            "group_id": "CMP-79f8a662f6455922"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-4b44ddd7ec8d8d6b42d7a901",
+          "PCD-P-ff45de1bef01eaeec6a4fff7",
+          "PCD-P-a0cfbe94e598b7334fb3b5f7",
+          "PCD-P-467c906d56a3f14d723e8ee5",
+          "PCD-P-f512536938e649c35f1e7fde",
+          "PCD-P-7c56ae4aa0162428ec0e8c24",
+          "PCD-P-f50db6109a1267de437b7ec3",
+          "PCD-P-2b3567524c678659ec8fe34c",
+          "PCD-P-fa37ef27389da4f422dbd16f",
+          "PCD-P-635be4afd59eb4f4632bc3cb",
+          "PCD-P-f26846a6b201f45858eefd76",
+          "PCD-P-eb2d8e7071be2b5e6247ea44",
+          "PCD-P-c44d6a68c7a96b2ab8fe0c18",
+          "PCD-P-b0b816cfc6fce5520918f6ae",
+          "PCD-P-666ed76ea2b1e2293c08c1af",
+          "PCD-P-144102339f3fa2d332be3f26",
+          "PCD-P-012507f3edf114e946f02711",
+          "PCD-P-102c1c736b7359bbdf7a53b7",
+          "PCD-P-67f65eb1984526bcf0d89e25",
+          "PCD-P-a159b0c25de3a4b85eaf0c7c",
+          "PCD-P-5446a466d841ce0474468a05",
+          "PCD-P-20187b3ca4e3a18c37d329a8",
+          "PCD-P-a973cae82d198af32587293e",
+          "PCD-P-7b94475b33efeeb994d2626b",
+          "PCD-P-bc9c663d86e6dd9f30508f99"
+        ],
+        "question_change_text": "令和１３年度（2031 年度）に、宇部工業高校と小野田工業高校を再編統合して、両校が行ってきた工業教育を踏まえ、工業科の教育機能の充実を図る新高校を設置（校地：宇部工業高校）",
+        "question_example": "宇部工業高校について、計画では「令和１３年度（2031 年度）に、宇部工業高校と小野田工業高校を再編統合して、両校が行ってきた工業教育を踏まえ、工業科の教育機能の充実を図る新高校を設置（校地：宇部工業高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-a8d008836f6d20df",
+          "PCD-P-RSP-4bbdc562ce0c3d10",
+          "PCD-P-RSP-c8a31c5ee996ace4",
+          "PCD-P-RSP-1611d34ce8c9a4f5",
+          "PCD-P-RSP-0c88d5063dabfc00",
+          "PCD-P-RSP-a7cb3422c2ee68f7"
+        ],
+        "school": "宇部工業高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-557ed00c4b75425445d5",
+            "group_id": "CMP-63663f63f39277ef"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-ad32f8f1820a615abadf04d4",
+          "PCD-P-826284cfc68dc3048f01950d",
+          "PCD-P-29dd523ad9332dd67c8c64f1",
+          "PCD-P-973a9a04546b1e7a7563d43b",
+          "PCD-P-b313365af8f174dcad338e69",
+          "PCD-P-439d99b0ecb92b5203c3358f",
+          "PCD-P-b849df5503a776c5fd7b788b",
+          "PCD-P-1384e2bcf6f3c5111d79005f",
+          "PCD-P-47e4dbc15720432a495d3467",
+          "PCD-P-85d3d33b8ba6d348e8284534",
+          "PCD-P-fa67e1566a205558fc404e2a",
+          "PCD-P-4e84f09aa685a2741b59a9f9",
+          "PCD-P-c49f746391b7115220664e2e",
+          "PCD-P-ff4ea684bb95476e8d965b42",
+          "PCD-P-5c3c755356aa046e94b4cac9",
+          "PCD-P-81dfa2551e2b2ed0b97f2478",
+          "PCD-P-81e07ce1c4aa4f738711b889",
+          "PCD-P-eea4dce594398df4ced295bd",
+          "PCD-P-774ec7c40564a13e44268208",
+          "PCD-P-5e8a7f59bcb51bb9b1d67fae",
+          "PCD-P-714ad220f438fff8d33631c4",
+          "PCD-P-e723b9d756bd064b74ad0969",
+          "PCD-P-becdcc03d0276a8c833791c1",
+          "PCD-P-6fe10fc285bbaf4cd33a4f00",
+          "PCD-P-b3047c126e424fb66521c2c7",
+          "PCD-P-2b9457808de7c4dc6c13ed3f",
+          "PCD-P-38d265435f5e65453ec90156",
+          "PCD-P-e22c6c5e192622f5e8f0d69f",
+          "PCD-P-c23d794a535fa70985ee819d",
+          "PCD-P-badcbddab40ef9fbc30f86ef",
+          "PCD-P-a05876fd9173461294333a5c",
+          "PCD-P-6df2c42acb42f990f727fa03",
+          "PCD-P-a7154deb995c70c063972855",
+          "PCD-P-99efb18222314cca8cc11113",
+          "PCD-P-1f17914506484b9876225608",
+          "PCD-P-510d37c72c69746469cd76ee",
+          "PCD-P-72eecf2e5db4a09cd5c346e7",
+          "PCD-P-b6216d9fe8b0deb24febb802",
+          "PCD-P-11385695c5e0b8520dbce239",
+          "PCD-P-7a87668eba4a4f59c9b7b2ab",
+          "PCD-P-59a792326d030aac131d4362",
+          "PCD-P-046b183ef5deaa23c27ca455",
+          "PCD-P-419b1292d3e2b2e81ef63d84",
+          "PCD-P-f6d0c4aaa01ea715f327364a",
+          "PCD-P-ba82f72f8f2986e2ea645b34"
+        ],
+        "question_change_text": "令和１３年度（2031 年度）に、新南陽高校と南陽工業高校を再編統合して、普通教育を主とする学科、工業に関する学科を有する新高校を設置（校地：南陽工業高校）",
+        "question_example": "新南陽高校について、計画では「令和１３年度（2031 年度）に、新南陽高校と南陽工業高校を再編統合して、普通教育を主とする学科、工業に関する学科を有する新高校を設置（校地：南陽工業高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-33d057391733b34e",
+          "PCD-P-RSP-feba79fe516f331a",
+          "PCD-P-RSP-8d895c42f53bc289",
+          "PCD-P-RSP-b5fd7ae989364f6a",
+          "PCD-P-RSP-37c02a65fd8738a9",
+          "PCD-P-RSP-826868f49676fdbf",
+          "PCD-P-RSP-93bc274a1c11c274",
+          "PCD-P-RSP-373bc90a91bdd768",
+          "PCD-P-RSP-ba2354acb4c65258",
+          "PCD-P-RSP-d398afc3ef71984d"
+        ],
+        "school": "新南陽高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-96c69d9cd18f642c84c1",
+            "group_id": "CMP-cde5ff76345f36bc"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-e74ecf5327aa6df7d4d20d67",
+          "PCD-P-b240ba10b1a24e51d934ccff",
+          "PCD-P-a9f19412da76ef99c1f92db4",
+          "PCD-P-6ae8196ae5092cf4a186238e",
+          "PCD-P-24cce45bd832c18f5877fe6b",
+          "PCD-P-23bb4079521883dded0e3723",
+          "PCD-P-dec69166a1c6626af20bcc50",
+          "PCD-P-ec90d2ebb11688dc0210ad9f",
+          "PCD-P-53956f86f4244f7408f6524e",
+          "PCD-P-fa592701268867c0dc08e64e",
+          "PCD-P-3d31fbd2c4c30c23c9ea8bbe",
+          "PCD-P-a77bab29c34195dee68a209a",
+          "PCD-P-2c368958767e6b7a27940002",
+          "PCD-P-2a4a00db3b8f77a5f18e5c82",
+          "PCD-P-8df07862b760da47eb20e43b",
+          "PCD-P-6186bbee171c25a6c8324dc4",
+          "PCD-P-45d0614d23aded167763d652",
+          "PCD-P-eda5f0236d00b275dd1ad1e7",
+          "PCD-P-a018ce8a0c1e0dc588f8e696",
+          "PCD-P-ad7136dc7c10d709fd31e1c5",
+          "PCD-P-559271fd771a856e20a7a005",
+          "PCD-P-b08a4a2e37b4cac151c7ec22",
+          "PCD-P-bb1fecd161d36de5bc6f437e",
+          "PCD-P-1b79caca70411e7d53e94b92",
+          "PCD-P-03d1361c731ce4061251cd0b",
+          "PCD-P-1f4e0655940abd0000810a9a",
+          "PCD-P-3420fb4a93cbfe60d8256619",
+          "PCD-P-b910c56a5506760ae7dfb48b",
+          "PCD-P-f0fd7f7c333f69b07c241b02",
+          "PCD-P-c17327f984c047b6e910a34f",
+          "PCD-P-834c62bf1f5f2326d20aab74",
+          "PCD-P-5e532548fa872a423280d31b"
+        ],
+        "question_change_text": "令和１４年度（2032 年度）に、岩国総合高校と岩国商業高校を再編統合して、両校が行ってきた普通教育と商業等の専門教育を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：岩国商業高校）",
+        "question_example": "岩国商業高校について、計画では「令和１４年度（2032 年度）に、岩国総合高校と岩国商業高校を再編統合して、両校が行ってきた普通教育と商業等の専門教育を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：岩国商業高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-90a21e071a38008f",
+          "PCD-P-RSP-ad731a70099a91fe",
+          "PCD-P-RSP-24846475dcb8c962",
+          "PCD-P-RSP-a54d82012a41c30a",
+          "PCD-P-RSP-1ec9d64a6a63381e"
+        ],
+        "school": "岩国商業高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-96c69d9cd18f642c84c1",
+            "group_id": "CMP-05fe6f30575a9fc2"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-e74ecf5327aa6df7d4d20d67",
+          "PCD-P-b240ba10b1a24e51d934ccff",
+          "PCD-P-a9f19412da76ef99c1f92db4",
+          "PCD-P-6ae8196ae5092cf4a186238e",
+          "PCD-P-24cce45bd832c18f5877fe6b",
+          "PCD-P-23bb4079521883dded0e3723",
+          "PCD-P-dec69166a1c6626af20bcc50",
+          "PCD-P-ec90d2ebb11688dc0210ad9f",
+          "PCD-P-53956f86f4244f7408f6524e",
+          "PCD-P-fa592701268867c0dc08e64e",
+          "PCD-P-3d31fbd2c4c30c23c9ea8bbe",
+          "PCD-P-a77bab29c34195dee68a209a",
+          "PCD-P-2c368958767e6b7a27940002",
+          "PCD-P-2a4a00db3b8f77a5f18e5c82",
+          "PCD-P-8df07862b760da47eb20e43b",
+          "PCD-P-6186bbee171c25a6c8324dc4",
+          "PCD-P-45d0614d23aded167763d652",
+          "PCD-P-eda5f0236d00b275dd1ad1e7",
+          "PCD-P-a018ce8a0c1e0dc588f8e696",
+          "PCD-P-ad7136dc7c10d709fd31e1c5",
+          "PCD-P-559271fd771a856e20a7a005",
+          "PCD-P-b08a4a2e37b4cac151c7ec22",
+          "PCD-P-bb1fecd161d36de5bc6f437e",
+          "PCD-P-1b79caca70411e7d53e94b92",
+          "PCD-P-03d1361c731ce4061251cd0b",
+          "PCD-P-1f4e0655940abd0000810a9a",
+          "PCD-P-3420fb4a93cbfe60d8256619",
+          "PCD-P-b910c56a5506760ae7dfb48b",
+          "PCD-P-f0fd7f7c333f69b07c241b02",
+          "PCD-P-c17327f984c047b6e910a34f",
+          "PCD-P-834c62bf1f5f2326d20aab74",
+          "PCD-P-5e532548fa872a423280d31b"
+        ],
+        "question_change_text": "令和１４年度（2032 年度）に、岩国総合高校と岩国商業高校を再編統合して、両校が行ってきた普通教育と商業等の専門教育を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：岩国商業高校）",
+        "question_example": "岩国総合高校について、計画では「令和１４年度（2032 年度）に、岩国総合高校と岩国商業高校を再編統合して、両校が行ってきた普通教育と商業等の専門教育を踏まえ、さらなる特色ある学校づくりを推進する新高校を設置（校地：岩国商業高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-90a21e071a38008f",
+          "PCD-P-RSP-ad731a70099a91fe",
+          "PCD-P-RSP-24846475dcb8c962",
+          "PCD-P-RSP-a54d82012a41c30a",
+          "PCD-P-RSP-1ec9d64a6a63381e"
+        ],
+        "school": "岩国総合高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-fd0da30b81bd47632937",
+            "group_id": "CMP-1e94d858e1b61f7b"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-88dbedebfc7e6b79079f0ca5"
+        ],
+        "question_change_text": "令和１５年度（2033 年度）に、下関西高校と下関南高校を再編統合して、普通教育を主とする学科、文理探究科を有する新高校を設置（校地：下関西高校）",
+        "question_example": "下関南高校について、計画では「令和１５年度（2033 年度）に、下関西高校と下関南高校を再編統合して、普通教育を主とする学科、文理探究科を有する新高校を設置（校地：下関西高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-a116160baf0762de"
+        ],
+        "school": "下関南高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-fd0da30b81bd47632937",
+            "group_id": "CMP-c18c9d7c5ccdb27e"
+          }
+        ],
+        "missing_codes": [
+          "school_specific_basis"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-88dbedebfc7e6b79079f0ca5"
+        ],
+        "question_change_text": "令和１５年度（2033 年度）に、下関西高校と下関南高校を再編統合して、普通教育を主とする学科、文理探究科を有する新高校を設置（校地：下関西高校）",
+        "question_example": "下関西高校について、計画では「令和１５年度（2033 年度）に、下関西高校と下関南高校を再編統合して、普通教育を主とする学科、文理探究科を有する新高校を設置（校地：下関西高校）」とされていますが、計画本文に明記された学校別の目的・理由を確認できる資料はありますか？",
+        "question_unknown_code": "school_specific_basis",
+        "question_unknown_text": "計画本文に明記された学校別の目的・理由",
+        "response_ids": [
+          "PCD-P-RSP-a116160baf0762de"
+        ],
+        "school": "下関西高校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-62afbe98f2053a3c6393",
+            "group_id": "CMP-2ca8600347c4b7da"
+          }
+        ],
+        "missing_codes": [
+          "implementation_year",
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討",
+        "question_example": "山口農業高校西市分校について、計画では「実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討」とされていますが、実施年度を確認できる資料はありますか？",
+        "question_unknown_code": "implementation_year",
+        "question_unknown_text": "実施年度",
+        "response_ids": [],
+        "school": "山口農業高校西市分校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-62afbe98f2053a3c6393",
+            "group_id": "CMP-6fb05279facedf66"
+          }
+        ],
+        "missing_codes": [
+          "implementation_year",
+          "named_comments"
+        ],
+        "opinion_record_ids": [],
+        "question_change_text": "実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討",
+        "question_example": "岩国高校坂上分校について、計画では「実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討」とされていますが、実施年度を確認できる資料はありますか？",
+        "question_unknown_code": "implementation_year",
+        "question_unknown_text": "実施年度",
+        "response_ids": [],
+        "school": "岩国高校坂上分校"
+      },
+      {
+        "cards": [
+          {
+            "comparison_id": "PVFM-62afbe98f2053a3c6393",
+            "group_id": "CMP-b955a0c5ab2083ed"
+          }
+        ],
+        "missing_codes": [
+          "implementation_year"
+        ],
+        "opinion_record_ids": [
+          "PCD-P-563143343e51b7be03ed3c64",
+          "PCD-P-23035078468eeeb14979f9de",
+          "PCD-P-44a93c780149e4b7c54d1fbd"
+        ],
+        "question_change_text": "実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討",
+        "question_example": "萩高校奈古分校について、計画では「実施年度の記載はなく、今後の地元中学校卒業者の入学状況等を勘案した上で、生徒募集の停止を検討」とされていますが、実施年度を確認できる資料はありますか？",
+        "question_unknown_code": "implementation_year",
+        "question_unknown_text": "実施年度",
+        "response_ids": [
+          "PCD-P-RSP-fa15dd46eb9dc3d3",
+          "PCD-P-RSP-e883fdd32153a191"
+        ],
+        "school": "萩高校奈古分校"
+      }
+    ],
+    "source_policy": "accepted_local_data_only"
+  },
+  "task_id": "W2-SCHOOL-QUESTION-QUALITY-VALIDATION-1",
   "timeline": [
     {
       "actor": "山口県教育委員会",
