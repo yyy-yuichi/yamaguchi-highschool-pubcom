@@ -76,8 +76,10 @@ function renderSchools() {
   applySchoolFilters();
 }
 
-function diffSide(label, text, page) {
-  const side = node("div", "diff-side"); side.append(node("strong", "", `${label}${page ? `／PDF p.${page}` : ""}`)); side.append(node("span", "", text || "対応する記載なし")); return side;
+function diffSide(label, text, page, source = null) {
+  const side = node("div", "diff-side"); side.append(node("strong", "", `${label}${page ? `／PDF p.${page}` : ""}`)); side.append(node("span", "", text || "対応する記載なし"));
+  if (text && page && source) { const links = node("div", "journey-source-links"); links.append(journeyPdfLink(`${label}の公式PDF`, source.url, page)); side.append(links); }
+  return side;
 }
 
 function diffCard(card) {
@@ -242,15 +244,23 @@ function setupPublicComment() {
 
 
 
-function journeyDetails(label, text) {
+function journeyDetails(label, text, source = null) {
   const details = node("details", "journey-details");
-  const summary = node("summary", "", label); details.append(summary, node("p", "journey-official-text", text)); return details;
+  const summary = node("summary", "", label); details.append(summary, node("p", "journey-official-text", text));
+  if (source) { const links = node("div", "journey-source-links"); links.append(journeyPdfLink("県民意見・県回答の公式PDF", source.pdf_url, source.page)); details.append(links); }
+  return details;
 }
 
-function journeySourceLink(source) {
-  const link = node("a", "journey-source-link", `${source.stage_label}の公式PDF p.${source.page}`);
-  link.href = source.url; link.target = "_blank"; link.rel = "noopener noreferrer"; return link;
+function journeyPdfLink(label, url, page) {
+  const link = node("a", "journey-source-link", `${label} p.${page}`);
+  link.href = `${url}#page=${page}`; link.target = "_blank"; link.rel = "noopener noreferrer"; return link;
 }
+
+function journeySourceLink(source) { return journeyPdfLink(`${source.stage_label}の公式PDF`, source.url, source.page); }
+
+function journeyCommentSource(record) { return { pdf_url: bundle.public_comment.source.pdf_url, page: record.source_page }; }
+
+function journeyPlanSource(cards, stage) { return cards.flatMap((card) => card.sources).find((source) => source.stage === stage) || null; }
 
 function journeyMissing(text) { return node("p", "journey-missing", `既存データでは確認できないこと：${text}`); }
 
@@ -300,11 +310,12 @@ function renderJourneyBasis(model, cards) {
   explicit.forEach((card) => {
     const block = node("section", "journey-record");
     block.append(node("p", "journey-record-label", card.action_label), node("p", "journey-answer", card.action_text));
-    block.append(node("p", "journey-evidence-note", "計画本文の学校別記載です。県民意見への回答を変更理由として扱ってはいません。")); content.append(block);
+    block.append(node("p", "journey-evidence-note", "計画本文の学校別記載です。県民意見への回答を変更理由として扱ってはいません。"));
+    const links = node("div", "journey-source-links"); card.sources.forEach((source) => links.append(journeySourceLink(source))); block.append(links); content.append(block);
   });
   const related = model.response_ids.map((id) => bundle.public_comment.responses.find((item) => item.response_id === id)).filter(Boolean);
   if (related[0]) {
-    content.append(journeyDetails(`この学校名が明記された県回答${related[0].group_number}を読む`, related[0].official_text));
+    content.append(journeyDetails(`この学校名が明記された県回答${related[0].group_number}を読む`, related[0].official_text, journeyCommentSource(related[0])));
     content.append(node("p", "journey-evidence-note", "関係する県回答として併記しています。計画変更との因果関係を示すものではありません。"));
   }
 }
@@ -320,9 +331,9 @@ function renderJourneyComments(model) {
     content.append(journeyMissing("この学校名が明記された県民意見・県回答")); return;
   }
   button.textContent = `関連する${opinions.length}意見・${responses.length}回答を一覧で見る`; button.hidden = false;
-  if (opinions[0]) content.append(journeyDetails(`意見項目${opinions[0].number}を読む`, opinions[0].official_text));
+  if (opinions[0]) content.append(journeyDetails(`意見項目${opinions[0].number}を読む`, opinions[0].official_text, journeyCommentSource(opinions[0])));
   const linked = opinions[0] ? bundle.public_comment.responses.find((item) => item.response_id === opinions[0].response_id) : responses[0];
-  if (linked) content.append(journeyDetails(`対応する県回答${linked.group_number}を読む`, linked.official_text));
+  if (linked) content.append(journeyDetails(`対応する県回答${linked.group_number}を読む`, linked.official_text, journeyCommentSource(linked)));
 }
 
 function accountabilityRow(label, text, tone = "") {
@@ -366,6 +377,8 @@ function renderJourneyAccountability(model, diffs) {
 
 function renderJourneyDiff(model) {
   const content = $("#journey-diff-content"); content.replaceChildren();
+  const cards = model.cards.map((reference) => bundle.school_cards.find((item) => item.group_id === reference.group_id)).filter(Boolean);
+  const draftSource = journeyPlanSource(cards, "draft"); const finalSource = journeyPlanSource(cards, "final");
   const comparisonIds = [...new Set(model.cards.map((reference) => reference.comparison_id))];
   const diffs = comparisonIds.map((comparisonId) => {
     const diff = bundle.diff_cards.find((item) => item.comparison_id === comparisonId);
@@ -373,7 +386,7 @@ function renderJourneyDiff(model) {
     const block = node("section", "journey-record");
     block.append(node("p", `journey-diff-status status-${diff.status}`, `照合結果：${diff.status_label}`), node("p", "journey-answer", diff.summary));
     const comparison = node("div", "journey-comparison");
-    comparison.append(diffSide("素案", diff.baseline_text, diff.baseline_page), node("span", "diff-arrow", diff.status === "same" ? "＝" : "→"), diffSide("最終版", diff.target_text, diff.target_page));
+    comparison.append(diffSide("素案", diff.baseline_text, diff.baseline_page, draftSource), node("span", "diff-arrow", diff.status === "same" ? "＝" : "→"), diffSide("最終版", diff.target_text, diff.target_page, finalSource));
     block.append(comparison); content.append(block);
     return diff;
   });
