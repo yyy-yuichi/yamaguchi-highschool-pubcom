@@ -275,14 +275,20 @@ function journeyQuestionChecks() {
 
 function resetJourneyQuestionChecks() { journeyQuestionChecks().forEach((item) => { item.checked = false; }); }
 
+function journeyQuestionEndingReady(text) {
+  return /(?:[？?]|か[。．.])$/.test(text);
+}
+
 function updateJourneyQuestion() {
   const input = $("#journey-question-input"); const status = $("#journey-question-status");
   const text = input.value.trim(); const minimum = bundle.school_question_journey.question_minimum_length;
-  const formatReady = text.length >= minimum && /[？?]$/.test(text);
+  const lengthReady = text.length >= minimum; const endingReady = journeyQuestionEndingReady(text);
+  const formatReady = lengthReady && endingReady;
   const checkedCount = journeyQuestionChecks().filter((item) => item.checked).length;
   const complete = formatReady && checkedCount === 3;
   if (!text) { status.textContent = "まだ問いは入力されていません。"; status.dataset.complete = "false"; return; }
-  if (!formatReady) { status.textContent = `文章の形を確認してください。${minimum}文字以上で、最後を「？」にします。`; status.dataset.complete = "false"; return; }
+  if (!lengthReady) { status.textContent = `文章の長さを確認してください。問いは${minimum}文字以上で書きます。`; status.dataset.complete = "false"; return; }
+  if (!endingReady) { status.textContent = "問いの文末を確認してください。「？」または「か。」で終えます。"; status.dataset.complete = "false"; return; }
   status.textContent = complete ? "3点を自分で確認しました。問いが1つできました。" : `文章の形は整いました。3点のうち${checkedCount}点を確認済みです。`;
   status.dataset.complete = String(complete);
 }
